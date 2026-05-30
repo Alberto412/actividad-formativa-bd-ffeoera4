@@ -2,6 +2,14 @@
 
 Sistema de registro de partes de trabajo para una empresa técnica, desarrollado con Spring Boot y MariaDB.
 
+Incluye:
+
+- API REST para operaciones CRUD
+- Interfaz web con Thymeleaf y Bootstrap
+- Carga inicial de datos (`DataLoader`)
+- Página de resumen de base de datos (`/bd`)
+- Script SQL de vistas para phpMyAdmin (`vistas.sql`)
+
 ## Requisitos
 
 - Java 21
@@ -97,6 +105,22 @@ URLs web:
 - http://localhost:8089/materiales
 - http://localhost:8089/partes
 - http://localhost:8089/parte-materiales
+- http://localhost:8089/bd
+
+### Resumen visual de base de datos (`/bd`)
+
+La pantalla `Base de datos` muestra:
+
+- Información de conexión (MariaDB, base, puertos y phpMyAdmin)
+- Contadores de registros (clientes, técnicos, materiales, partes y materiales usados)
+- Tablas resumen de:
+  - clientes
+  - técnicos
+  - materiales
+  - partes de trabajo (con cliente y técnico)
+  - materiales usados (con coste total calculado)
+- Instrucciones de comprobación en phpMyAdmin
+- Bloques con consultas SQL útiles para demo
 
 ## Ejemplos JSON
 
@@ -160,7 +184,18 @@ URLs web:
 
 - Arranque de Docker (`db` y `phpmyadmin`)
 - Arranque de Spring Boot en puerto `8089`
-- Tablas creadas en `partes_trabajo_db`
-- Datos de prueba cargados automáticamente
-- Prueba CRUD de al menos un endpoint (por ejemplo `/api/clientes`)
-- Relación entre `parte_trabajo` y `parte_material`
+- Navegación por la interfaz web:
+  - menú principal (`/`)
+  - clientes, técnicos, materiales, partes y materiales usados
+  - resumen de base de datos (`/bd`)
+- Demostración de CRUD web:
+  - crear/editar/eliminar cliente
+  - crear/editar/eliminar material
+  - crear/editar/eliminar parte de trabajo
+  - crear/eliminar material usado
+- Tablas creadas en `partes_trabajo_db` y datos de prueba cargados automáticamente
+- Comprobación de API REST (`/api/clientes`, `/api/partes`)
+- Ejecución opcional de `vistas.sql` en phpMyAdmin y consulta de vistas:
+  - `vista_partes_completas`
+  - `vista_materiales_usados`
+  - `vista_coste_partes`
