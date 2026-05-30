@@ -199,3 +199,39 @@ La pantalla `Base de datos` muestra:
   - `vista_partes_completas`
   - `vista_materiales_usados`
   - `vista_coste_partes`
+
+## Verificación y pruebas
+
+Se han añadido pruebas automáticas mínimas para validar servicios y API REST sin depender de MariaDB real.
+
+Casos de prueba implementados:
+
+1. `ClienteServiceTest`: listado de clientes (`listar`) devuelve datos del repositorio.
+2. `ClienteServiceTest`: actualización de cliente (`actualizar`) modifica campos y guarda cambios.
+3. `MaterialServiceTest`: creación de material (`crear`) persiste correctamente.
+4. `MaterialServiceTest`: actualización de material (`actualizar`) modifica nombre, descripción, precio y stock.
+5. `ParteTrabajoServiceTest`: actualización de parte (`actualizar`) modifica campos y relaciones (`cliente`, `tecnico`).
+6. `ClienteControllerIntegrationTest` (MockMvc): `GET /api/clientes` responde `200 OK` y JSON esperado.
+
+### Cómo ejecutar las pruebas
+
+```bash
+mvn test
+```
+
+Las pruebas de integración REST usan `MockMvc` con `@WebMvcTest`, por lo que no requieren conexión a MariaDB ni contenedores Docker para ejecutarse.
+
+### Depuración
+
+Si alguna prueba falla:
+
+1. Revisa el primer error real en el log de Maven (ignora cascadas posteriores).
+2. Ejecuta solo la clase afectada para iterar más rápido:
+
+```bash
+mvn -Dtest=ClienteServiceTest test
+mvn -Dtest=ClienteControllerIntegrationTest test
+```
+
+3. Si falla un test de serialización JSON, verifica nombres de campos en entidades/controladores.
+4. Si falla un test de servicio, revisa el `when(...).thenReturn(...)` del mock y el `verify(...)` esperado.
