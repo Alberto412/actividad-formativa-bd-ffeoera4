@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nuevo material usado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container py-4">
+    <h2>Nuevo material usado</h2>
+    <form th:action="@{${accion}}" th:object="${parteMaterial}" method="post" class="row g-3 mt-1">
+        <div class="col-md-6">
+            <label class="form-label">Parte de trabajo</label>
+            <select class="form-select" th:field="*{parteTrabajo.id}" required>
+                <option value="">Selecciona un parte</option>
+                <option th:each="p : ${partes}" th:value="${p.id}" th:text="${p.id + ' - ' + p.titulo}"></option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Material</label>
+            <select class="form-select" th:field="*{material.id}" required>
+                <option value="">Selecciona un material</option>
+                <option th:each="m : ${materiales}" th:value="${m.id}" th:text="${m.nombre}"></option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Cantidad</label>
+            <input type="number" class="form-control" th:field="*{cantidad}" min="1" required>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Guardar</button>
+            <a class="btn btn-secondary" th:href="@{/parte-materiales}">Volver</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

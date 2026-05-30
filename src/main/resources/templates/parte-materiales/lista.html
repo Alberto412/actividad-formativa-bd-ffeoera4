@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Materiales usados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">Partes de Trabajo</a>
+    </div>
+</nav>
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Materiales usados en partes</h2>
+        <a class="btn btn-success" th:href="@{/parte-materiales/nuevo}">Añadir uso de material</a>
+    </div>
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Parte</th>
+            <th>Material</th>
+            <th>Cantidad</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pm : ${parteMateriales}">
+            <td th:text="${pm.id}"></td>
+            <td th:text="${pm.parteTrabajo != null ? pm.parteTrabajo.titulo : ''}"></td>
+            <td th:text="${pm.material != null ? pm.material.nombre : ''}"></td>
+            <td th:text="${pm.cantidad}"></td>
+            <td>
+                <a class="btn btn-sm btn-danger" th:href="@{'/parte-materiales/eliminar/' + ${pm.id}}">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
