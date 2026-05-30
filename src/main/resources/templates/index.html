@@ -17,6 +17,7 @@
             <a class="nav-link text-white" th:href="@{/materiales}">Materiales</a>
             <a class="nav-link text-white" th:href="@{/partes}">Partes</a>
             <a class="nav-link text-white" th:href="@{/parte-materiales}">Materiales usados</a>
+            <a class="nav-link text-white" th:href="@{/bd}">Base de datos</a>
         </div>
     </div>
 </nav>
@@ -72,6 +73,15 @@
                     <h5 class="card-title">Materiales usados</h5>
                     <p class="card-text text-muted">Asocia materiales y cantidades a cada parte de trabajo.</p>
                     <a class="btn btn-primary mt-auto" th:href="@{/parte-materiales}">Entrar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Base de datos</h5>
+                    <p class="card-text text-muted">Visualiza un resumen de datos, tablas e instrucciones SQL para la demo.</p>
+                    <a class="btn btn-primary mt-auto" th:href="@{/bd}">Entrar</a>
                 </div>
             </div>
         </div>
