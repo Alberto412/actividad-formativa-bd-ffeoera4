@@ -43,6 +43,34 @@ La aplicación se conecta a:
 - URL JDBC: `jdbc:mariadb://localhost:3308/partes_trabajo_db?createDatabaseIfNotExist=true&serverTimezone=UTC`
 - Usuario: `root`
 - Contraseña: `rootpass`
+- Base de datos: `partes_trabajo_db`
+
+## Vistas SQL para demostración (MariaDB)
+
+Se incluye el archivo:
+
+- `src/main/resources/sql/vistas.sql`
+
+Este archivo crea tres vistas:
+
+- `vista_partes_completas`
+- `vista_materiales_usados`
+- `vista_coste_partes`
+
+### Cómo ejecutarlas en phpMyAdmin
+
+1. Entra en `http://localhost:8080`.
+2. Selecciona la base `partes_trabajo_db`.
+3. Abre la pestaña `SQL`.
+4. Copia y ejecuta el contenido de `src/main/resources/sql/vistas.sql`.
+
+### Consultas de ejemplo
+
+```sql
+SELECT * FROM vista_partes_completas;
+SELECT * FROM vista_materiales_usados;
+SELECT * FROM vista_coste_partes;
+```
 
 ## Endpoints principales
 
